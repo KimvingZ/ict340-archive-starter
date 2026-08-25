@@ -14,7 +14,7 @@ const collection = {
   description: "This archive preserves first-hand audio accounts and traditional ecological knowledge from generational Mekong fishermen. It matters because it protects vital community heritage and irreplaceable observations of changing river ecosystems before these living traditions disappear.",
 
   // Who is building this archive? Your name, as you want it shown.
-  curator: "Kimving NGO Test",
+  curator: "Kimving NGO ",
 
   // Where does your knowledge come from? A person, a place, a community.
   source: "To be gathered",
