@@ -1,23 +1,6 @@
 import collection from "../collection.config.js";
-import EntryCard from "../components/EntryCard.js";
-
-// PLACEHOLDER — replace with two of your real pitch entries before you submit.
-const entries = [
-  {
-    title: "Grandmother's Kroeung",
-    description:
-      "The lemongrass-and-galangal paste my grandmother pounded by hand every morning before selling fish amok at the Kampong Cham market. She never measured anything; she said the ratio lived in her wrist.",
-    contributor: "Sophal Chan",
-    place: "Kampong Cham",
-  },
-  {
-    title: "The Naga and the Mekong's Bend",
-    description:
-      "The story my father told on the boat about why the river curves sharply near our village — a naga circling back to guard a sunken temple bell. Fishermen still slow their engines at that bend out of habit.",
-    contributor: "Sreymom Heng",
-    place: "Phnom Penh",
-  },
-];
+import entries from "../data/entries.js";
+import EntryList from "../components/EntryList.js";
 
 const styles = {
   wrap: {
@@ -91,11 +74,11 @@ export default function Home() {
         <p style={styles.cardValue}>{collection.source}</p>
       </div>
 
-      <p style={styles.count}>entries in the archive: {entries.length} (for now)</p>
+      <p style={styles.count}>
+        games in the archive: {entries.length} (for now)
+      </p>
 
-      {entries.map((entry) => (
-        <EntryCard key={entry.title} {...entry} />
-      ))}
+      <EntryList entries={entries} />
 
       <footer style={styles.footer}>
         Built in ICT 340 — Vibe Coding, American University of Phnom Penh, Fall
