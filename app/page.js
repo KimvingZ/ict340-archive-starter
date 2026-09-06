@@ -1,6 +1,6 @@
 import collection from "../collection.config.js";
 import entries from "../data/entries.js";
-import EntryList from "../components/EntryList.js";
+import ArchiveSearch from "../components/ArchiveSearch.js";
 
 const styles = {
   wrap: {
@@ -78,7 +78,7 @@ export default function Home() {
         games in the archive: {entries.length} (for now)
       </p>
 
-      <EntryList entries={entries} />
+      <ArchiveSearch entries={entries} />
 
       <footer style={styles.footer}>
         Built in ICT 340 — Vibe Coding, American University of Phnom Penh, Fall
