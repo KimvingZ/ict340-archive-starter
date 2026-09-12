@@ -1,3 +1,5 @@
+import Highlight from "./Highlight.js";
+
 const KHMER_STACK =
   "'Noto Sans Khmer', 'Khmer OS Battambang', 'Khmer OS', 'Leelawadee UI', 'Nokora', sans-serif";
 
@@ -52,12 +54,12 @@ const styles = {
   unsourced: { color: "#C9A227" },
 };
 
-function Fact({ label, value }) {
+function Fact({ label, value, query }) {
   if (!value) return null;
   return (
     <p style={styles.fact}>
       <span style={styles.factLabel}>{label} </span>
-      {value}
+      <Highlight text={value} query={query} />
     </p>
   );
 }
@@ -73,36 +75,47 @@ export default function EntryCard({
   place,
   contributor,
   source,
+  query,
 }) {
   return (
     <article style={styles.card}>
       {khmerTitle ? (
         <h2 lang="km" style={styles.khmerTitle}>
-          {khmerTitle}
+          <Highlight text={khmerTitle} query={query} />
         </h2>
       ) : null}
-      <h3 style={styles.title}>{title}</h3>
+      <h3 style={styles.title}>
+        <Highlight text={title} query={query} />
+      </h3>
 
-      <p style={styles.description}>{description || "No description yet."}</p>
+      <p style={styles.description}>
+        <Highlight text={description || "No description yet."} query={query} />
+      </p>
 
       {howToPlay ? (
         <>
           <p style={styles.label}>HOW IT IS PLAYED</p>
-          <p style={styles.howToPlay}>{howToPlay}</p>
+          <p style={styles.howToPlay}>
+            <Highlight text={howToPlay} query={query} />
+          </p>
         </>
       ) : null}
 
       <div style={styles.facts}>
-        <Fact label="Players" value={players} />
-        <Fact label="You need" value={materials} />
-        <Fact label="Played at" value={occasion} />
-        <Fact label="Where" value={place} />
+        <Fact label="Players" value={players} query={query} />
+        <Fact label="You need" value={materials} query={query} />
+        <Fact label="Played at" value={occasion} query={query} />
+        <Fact label="Where" value={place} query={query} />
       </div>
 
       <p style={styles.credit}>
         {contributor ? (
-          <>Told by {contributor}</>
+          <>
+            Told by <Highlight text={contributor} query={query} />
+          </>
         ) : (
+          // `source` is deliberately not highlighted: ArchiveSearch does not
+          // search it, so marking it would promise a match that is not there.
           <span style={styles.unsourced}>
             {source || "No contributor recorded yet"}
           </span>
