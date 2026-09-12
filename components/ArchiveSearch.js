@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import EntryList from "./EntryList.js";
+import PagedEntryList from "./PagedEntryList.js";
 import NoResults from "./NoResults.js";
 
 // Filters the array it was handed. No server, no fetch, no packages.
@@ -83,7 +83,9 @@ export default function ArchiveSearch({ entries }) {
       </p>
 
       {visible.length > 0 ? (
-        <EntryList entries={visible} />
+        // key={needle} remounts the list when the query changes, so a new search
+        // always starts you on page 1 instead of a stale page 2.
+        <PagedEntryList key={needle} entries={visible} query={needle} />
       ) : (
         <NoResults query={query.trim()} />
       )}
